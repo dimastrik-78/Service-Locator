@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
-namespace ServiceSystem.ServiceLocator.Interface
+namespace Utils.Signal
 {
-    interface IService
-    {
-        T GetService<T>();
-    }
+    class SwithController : ASignal<GameObject> { }
 }

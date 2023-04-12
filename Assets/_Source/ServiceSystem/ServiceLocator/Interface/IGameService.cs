@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceSystem.ServiceLocator.Interface
+namespace Assets._Source.ServiceSystem.ServiceLocator.Interface
 {
-    interface IService
+    interface IGameService
     {
-        T GetService<T>();
     }
 }

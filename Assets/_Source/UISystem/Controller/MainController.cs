@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
+using Utils.Signal;
 
-public class MainController : MonoBehaviour
+public class MainController : IUIState
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Enter()
     {
-        
+        Signals.Get<SwithController>().AddListener(Switch);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Switch(GameObject gameObject)
     {
-        
+
+    }
+
+    public void Exit()
+    {
+        Signals.Get<SwithController>().RemoveListener(Switch);
     }
 }

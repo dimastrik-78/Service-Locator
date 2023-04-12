@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets._Source.UISystem
+namespace UISystem
 {
-    class UISwitcher : MonoBehaviour
+    class UISwitcher
     {
 
     }

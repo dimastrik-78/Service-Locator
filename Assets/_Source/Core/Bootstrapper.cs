@@ -10,7 +10,7 @@ namespace Core
 
         private void Awake()
         {
-            _serviceLocator.GetService<SoundPlayer>();
+            
         }
     }
 }

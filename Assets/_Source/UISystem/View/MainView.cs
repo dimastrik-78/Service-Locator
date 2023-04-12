@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Utils;
+using Utils.Signal;
 
 public class MainView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button crossButton;
+
+    private void OnEnable()
     {
-        
+        crossButton.onClick.AddListener(OnCrossPressed);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        crossButton.onClick.RemoveListener(OnCrossPressed);
+    }
+
+    private void OnCrossPressed()
+    {
+        Signals.Get<SwithController>().Dispatch(null);
     }
 }
