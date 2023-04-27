@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace ServiceSystem.ServiceLocator
 {
-    class SoundPlayer : ISoundPlayer
+    public class SoundPlayer : ISoundPlayer
     {
-        private AudioSource _audio;
+        private readonly AudioSource _audio;
 
         public SoundPlayer(AudioSource audio)
         {

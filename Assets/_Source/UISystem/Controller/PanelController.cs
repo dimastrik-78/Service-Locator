@@ -1,24 +1,45 @@
+using System;
+using ServiceSystem.ServiceLocator;
+using UISystem.State;
+using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 using Utils.Signal;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class PanelController : IUIState
+namespace UISystem.Controller
 {
-    //UISwitcher switcher
-    public void Enter()
+    public class PanelController : IUIState
     {
-        Signals.Get<SwithController>().AddListener(Switch);
-    }
+        private readonly UISwitcher _uiSwitcher;
+        private readonly FadeService _fadeService;
+        private readonly SoundPlayer _soundPlayer;
+        private readonly Image _img;
+        private readonly float _duration;
 
-    private void Switch(GameObject gameObject)
-    {
-        gameObject.active = true;
-    }
+        public PanelController(UISwitcher uiSwitcher, FadeService fadeService, SoundPlayer soundPlayer, Image img, float duration)
+        {
+            _uiSwitcher = uiSwitcher;
+            _fadeService = fadeService;
+            _soundPlayer = soundPlayer;
+            _img = img;
+            _duration = duration;
+        }
+        
+        public void Enter()
+        {
+            Signals.Get<SwitchPanelState>().AddListener(Switch);
+        }
+        
+        public void Exit()
+        {
+            Signals.Get<SwitchPanelState>().RemoveListener(Switch);
+        }
 
-    public void Exit()
-    {
-        Signals.Get<SwithController>().RemoveListener(Switch);
+        private void Switch()
+        {
+            _fadeService.FadeOut(_img, _duration);
+            _soundPlayer.PlayCloseSound();
+            _uiSwitcher.Switch(0);
+        }
     }
 }

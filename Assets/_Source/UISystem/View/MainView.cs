@@ -1,26 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Utils.Signal;
 
-public class MainView : MonoBehaviour
+namespace UISystem.View
 {
-    [SerializeField] private Button crossButton;
-
-    private void OnEnable()
+    public class MainView : MonoBehaviour
     {
-        crossButton.onClick.AddListener(OnCrossPressed);
-    }
+        [SerializeField] private Button crossButton;
 
-    private void OnDisable()
-    {
-        crossButton.onClick.RemoveListener(OnCrossPressed);
-    }
+        private void OnEnable()
+        {
+            crossButton.onClick.AddListener(OnCrossPressed);
+        }
 
-    private void OnCrossPressed()
-    {
-        Signals.Get<SwithController>().Dispatch(null);
+        private void OnDisable()
+        {
+            crossButton.onClick.RemoveListener(OnCrossPressed);
+        }
+
+        private void OnCrossPressed()
+        {
+            Signals.Get<SwitchMainState>().Dispatch();
+        }
     }
 }

@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 namespace ServiceSystem.ServiceLocator.Interface
 {
-    interface IFadeService
+    interface IFadeService : IGameService
     {
-        public void FadeIn(Image img, float duration, Action action);
-        public void FadeOut(Image img, float duration, Action action);
+        public void FadeIn(Image img, float duration);
+        public void FadeOut(Image img, float duration);
     }
 }

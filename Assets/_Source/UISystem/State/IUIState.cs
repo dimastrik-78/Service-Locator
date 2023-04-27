@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IUIState
+namespace UISystem.State
 {
-    public void Enter();
-    public void Exit();
+    public interface IUIState
+    {
+        public void Enter();
+        public void Exit();
+    }
 }

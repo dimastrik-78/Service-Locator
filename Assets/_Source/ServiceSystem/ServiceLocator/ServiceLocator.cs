@@ -1,14 +1,20 @@
-﻿using Assets._Source.ServiceSystem.ServiceLocator.Interface;
-using ServiceSystem.ServiceLocator.Interface;
+﻿using ServiceSystem.ServiceLocator.Interface;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ServiceSystem.ServiceLocator
 {
     class ServiceLocator : IService
     {
-        private Dictionary<Type, IGameService> _service;
+        private readonly Dictionary<Type, IGameService> _service = new();
 
+        public ServiceLocator(AudioSource audio)
+        {
+            _service.Add(typeof(FadeService), new FadeService());
+            _service.Add(typeof(SoundPlayer), new SoundPlayer(audio));
+        }
+        
         public T GetService<T>()
         {
             return default;

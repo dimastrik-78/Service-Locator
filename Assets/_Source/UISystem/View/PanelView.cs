@@ -1,26 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Utils.Signal;
 
-public class PanelView : MonoBehaviour
+namespace UISystem.View
 {
-    [SerializeField] private Button crossButton;
-
-    private void OnEnable()
+    public class PanelView : MonoBehaviour
     {
-        crossButton.onClick.AddListener(OnCrossPressed);
-    }
+        [SerializeField] private Image image;
+        [SerializeField] private Button crossButton;
 
-    private void OnDisable()
-    {
-        crossButton.onClick.RemoveListener(OnCrossPressed);
-    }
+        private void Awake()
+        {
+            Signals.Get<ChangePanelUI>().AddListener(OnChangeImage);
+        }
 
-    private void OnCrossPressed()
-    {
-        Signals.Get<SwithController>().Dispatch(gameObject);
+        private void OnEnable()
+        {
+            crossButton.onClick.AddListener(OnCrossPressed);
+        }
+
+        private void OnDisable()
+        {
+            crossButton.onClick.RemoveListener(OnCrossPressed);
+        }
+
+        private void OnDestroy()
+        {
+            Signals.Get<ChangePanelUI>().RemoveListener(OnChangeImage);
+        }
+
+        private void OnChangeImage()
+        {
+            if (!image.IsActive())
+            {
+                image.enabled = true;
+                return;
+            }
+
+            if (image.color.a == 0)
+                image.enabled = false;
+        }
+
+        private void OnCrossPressed()
+        {
+            Signals.Get<SwitchPanelState>().Dispatch();
+        }
     }
 }

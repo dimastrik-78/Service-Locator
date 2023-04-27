@@ -1,28 +1,32 @@
 ﻿using DG.Tweening;
 using System;
 using ServiceSystem.ServiceLocator.Interface;
+using UnityEngine;
 using UnityEngine.UI;
+using Utils;
+using Utils.Signal;
 
 namespace ServiceSystem.ServiceLocator
 {
-    class FadeService : IFadeService
+    public class FadeService : IFadeService
     {
-        private const float _maxDuration = 1;
-        private const float _minDuration = 0;
+        private const float MAX_DURATION = 1;
+        private const float MIN_DURATION = 0;
 
-        public void FadeIn(Image img, float duration, Action action) =>
-            Fade(img, _maxDuration, duration, action);
+        public void FadeIn(Image img, float duration) =>
+            Fade(img, MAX_DURATION, duration);
 
-        public void FadeOut(Image img, float duration, Action action) =>
-            Fade(img, _minDuration, duration, action);
+        public void FadeOut(Image img, float duration) =>
+            Fade(img, MIN_DURATION, duration);
 
-        public void Fade(Image img, float endValue, float duration, Action action)
+        private void Fade(Image img, float endValue, float duration)
         {
             img.DOFade(endValue, duration)
                 .OnComplete(() =>
                 {
-                    action?.Invoke();
+                    Signals.Get<ChangePanelUI>().Dispatch();
                 });
+            Signals.Get<ChangePanelUI>().Dispatch();
         }
     }
 }
