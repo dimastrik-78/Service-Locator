@@ -1,5 +1,4 @@
 ﻿using ServiceSystem.ServiceLocator.Interface;
-using System;
 using UnityEngine;
 
 namespace ServiceSystem.ServiceLocator
@@ -14,9 +13,9 @@ namespace ServiceSystem.ServiceLocator
         }
 
         public void PlayCloseSound() =>
-            _audio.Play();
+            Debug.Log("Close sound");
 
         public void PlayOpenSound() =>
-            _audio.Play();
+            Debug.Log("Open sound");
     }
 }

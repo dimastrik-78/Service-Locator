@@ -1,7 +1,5 @@
 ﻿using DG.Tweening;
-using System;
 using ServiceSystem.ServiceLocator.Interface;
-using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Utils.Signal;
