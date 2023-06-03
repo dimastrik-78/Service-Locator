@@ -39,7 +39,7 @@ namespace UISystem.Controller
         {
             _fadeService.FadeOut(_img, _duration);
             _soundPlayer.PlayCloseSound();
-            _uiSwitcher.Switch(0);
+            _uiSwitcher.Switch(typeof(MainController));
         }
     }
 }

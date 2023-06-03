@@ -39,7 +39,7 @@ namespace UISystem.Controller
         {
             _fadeService.FadeIn(_img, _duration);
             _soundPlayer.PlayOpenSound();
-            _uiSwitcher.Switch(1);
+            _uiSwitcher.Switch(typeof(PanelController));
         }
     }
 }
