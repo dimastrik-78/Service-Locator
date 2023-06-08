@@ -21,7 +21,7 @@ namespace Core
 
         private void Init()
         {
-            _serviceLocator = new ServiceLocator(audioSource);
+            // _serviceLocator = new ServiceLocator(audioSource);
         }
     }
 }

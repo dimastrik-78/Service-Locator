@@ -9,11 +9,11 @@ namespace ServiceSystem.ServiceLocator
     {
         private readonly Dictionary<Type, IGameService> _service = new();
 
-        public ServiceLocator(AudioSource audio)
-        {
-            _service.Add(typeof(IFadeService), new FadeService());
-            _service.Add(typeof(ISoundPlayer), new SoundPlayer(audio));
-        }
+        // public ServiceLocator(AudioSource audio)
+        // {
+        //     _service.Add(typeof(IFadeService), new FadeService());
+        //     _service.Add(typeof(ISoundPlayer), new SoundPlayer(audio));
+        // }
         
         public T GetService<T>()
         {

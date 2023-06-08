@@ -1,5 +1,6 @@
 ﻿using ServiceSystem.ServiceLocator.Interface;
 using UnityEngine;
+using Zenject;
 
 namespace ServiceSystem.ServiceLocator
 {
@@ -7,6 +8,7 @@ namespace ServiceSystem.ServiceLocator
     {
         private readonly AudioSource _audio;
 
+        [Inject]
         public SoundPlayer(AudioSource audio)
         {
             _audio = audio;

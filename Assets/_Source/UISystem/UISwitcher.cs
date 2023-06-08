@@ -10,7 +10,7 @@ namespace UISystem
 {
     public class UISwitcher
     {
-        private Dictionary<Type, IUIState> _states;
+        private readonly Dictionary<Type, IUIState> _states;
         private IUIState _state;
 
         [Inject]
@@ -22,10 +22,17 @@ namespace UISystem
                 { typeof(MainController), mainController },
                 { typeof(PanelController), panelController }
             };
-            
-            Switch(typeof(MainController));
         }
 
+        [Inject]
+        private void SetSwitcher()
+        {
+            _states[typeof(MainController)].GetSwitcher(this);
+            _states[typeof(PanelController)].GetSwitcher(this);
+            _state = _states[typeof(MainController)];
+            _state.Enter();
+        }
+        
         public void Switch(Type type)
         {
             _state?.Exit();

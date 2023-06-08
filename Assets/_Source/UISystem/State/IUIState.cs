@@ -2,7 +2,8 @@ namespace UISystem.State
 {
     public interface IUIState
     {
-        public void Enter();
-        public void Exit();
+        void GetSwitcher(UISwitcher switcher);
+        void Enter();
+        void Exit();
     }
 }

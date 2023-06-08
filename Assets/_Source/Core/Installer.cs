@@ -2,6 +2,7 @@
 using ScoreSystem;
 using ServiceSystem.ServiceLocator;
 using ServiceSystem.ServiceLocator.Interface;
+using UISystem;
 using UISystem.Controller;
 using UISystem.State;
 using UnityEngine;
@@ -17,26 +18,37 @@ namespace Core
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private Text scoreText;
         [SerializeField] private Button scoreButton;
-        
+
+        private UISwitcher _uiSwitcher;
+        private FadeService _fadeService;
+        private SoundPlayer _sound;
+
         public override void InstallBindings()
         {
-            Container.Bind<IGameService>()
+            Container.Bind<IFadeService>()
                 .To<FadeService>()
                 .AsSingle()
                 .NonLazy();
-            Container.Bind<IGameService>()
+            Container.Bind<ISoundPlayer>()
                 .To<SoundPlayer>()
                 .AsSingle()
+                .WithArguments(audioSource)
                 .NonLazy();
 
             Container.Bind<IUIState>()
                 .WithId(BuildID.MAIN_CONTROLLER)
                 .To<MainController>()
-                .AsSingle()
+                .AsCached()
+                .WithArguments(img, duration)
                 .NonLazy();
             Container.Bind<IUIState>()
                 .WithId(BuildID.PANEL_CONTROLLER)
-                .To<MainController>()
+                .To<PanelController>()
+                .AsCached()
+                .WithArguments(img, duration)
+                .NonLazy();
+
+            Container.Bind<UISwitcher>()
                 .AsSingle()
                 .NonLazy();
 

@@ -1,6 +1,6 @@
 ﻿namespace ServiceSystem.ServiceLocator.Interface
 {
-    interface ISoundPlayer : IGameService
+    public interface ISoundPlayer
     {
         public void PlayOpenSound();
         public void PlayCloseSound();
